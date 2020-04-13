@@ -35,7 +35,7 @@ public:
   CDnsSeedOpts() : nThreads(96), nDnsThreads(4), nPort(53), mbox(NULL), ns(NULL), host(NULL), tor(NULL), fUseTestNet(false), fWipeBan(false), fWipeIgnore(false), ipv4_proxy(NULL), ipv6_proxy(NULL) {}
 
   void ParseCommandLine(int argc, char **argv) {
-    static const char *help = "Phore-seeder\n"
+    static const char *help = "Vitae-seeder\n"
                               "Usage: %s -h <host> -n <ns> [-m <mbox>] [-t <threads>] [-p <port>]\n"
                               "\n"
                               "Options:\n"
@@ -397,8 +397,8 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"dns0.phore.io", "dns1.phore.io", "dns2.phore.io", "dns3.phore.io", "dns4.phore.io", "dns5.phore.io", ""};
-static const string testnet_seeds[] = {""};
+static const string mainnet_seeds[] = {"fs1.vitae.phore.io", "fs2.vitae.phore.io", ""};
+static const string testnet_seeds[] = {"fs1.testnet.vitae.phore.io"};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
@@ -452,7 +452,7 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0x47;
+      pchMessageStart[0] = 0x45;
       pchMessageStart[1] = 0x76;
       pchMessageStart[2] = 0x65;
       pchMessageStart[3] = 0xba;
